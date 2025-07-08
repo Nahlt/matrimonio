@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco & Agnese - Il Nostro Matrimonio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base styles for body and general layout */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Previene lo scrolling orizzontale */
+            background-color: #F5F5DC; /* Sfondo crema di fallback */
+        }
+
+        /* Hero Section styles */
+        .hero-section {
+            /* background-image, background-size, background-position, background-attachment sono spostati in ::before */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombra per il testo */
+            position: relative;
+        }
+        /* Per evitare che il contenuto della hero-section sia sfocato,
+           applichiamo la sfocatura all'immagine di sfondo tramite uno pseudo-elemento */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover; /* Mantiene la copertura completa */
+            background-position: center;
+            background-attachment: fixed; /* Mantiene l'immagine fissa durante lo scroll */
+            filter: blur(1px); /* Sfocatura applicata solo all'immagine, ridotta a 1px */
+            z-index: 0; /* Assicura che sia sotto gli overlay e il contenuto */
+            /* Impostiamo l'immagine di sfondo qui per la sfocatura */
+            background-image: url('https://www.fotorotastudio.it/wp-content/uploads/2018/10/villa-calchi-matrimonio-2.jpg');
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.24); /* Opacità ridotta del 20% (da 0.3 a 0.24) per aumentare la trasparenza dell'immagine */
+            z-index: 1;
+        }
+        .fade-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2; /* Sopra l'overlay scuro */
+            /* Cornice di dissolvenza: sfuma dal trasparente al colore di sfondo del body */
+            background: radial-gradient(circle at center, transparent 60%, rgba(245, 245, 220, 0.8) 100%);
+        }
+        .content-container {
+            position: relative;
+            z-index: 3; /* Assicura che il contenuto sia sopra tutti gli overlay */
+            text-align: center;
+            padding: 1rem; /* Padding per evitare che il contenuto tocchi i bordi su schermi piccoli */
+        }
+
+        /* Scroll Section styles (for animations) */
+        .scroll-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 1rem; /* Padding responsivo */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out; /* Animazione di comparsa */
+        }
+        .scroll-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Icon Button styles */
+        .icon-button {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px); /* Effetto vetro smerigliato */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease; /* Transizione al passaggio del mouse */
+        }
+        .icon-button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px); /* Leggero spostamento verso l'alto al passaggio del mouse */
+        }
+
+        /* Map Container styles */
+        .map-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Rapporto d'aspetto 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 1rem;
+        }
+        /* Style for the Typeform embed container (no longer used for direct embed) */
+        /* .typeform-container {
+            width: 100%;
+            max-width: 600px;
+            height: 500px;
+            margin: 2rem auto;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        } */
+    </style>
+</head>
+<body class="bg-[#F5F5DC]"> <!-- Sfondo crema -->
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section relative">
+        <div class="overlay"></div>
+        <div class="fade-overlay"></div> <!-- Nuovo overlay per la cornice di dissolvenza -->
+        <div class="content-container flex flex-col items-center justify-center h-full">
+            <!-- Testo del titolo responsivo -->
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 text-[#F5F5DC] tracking-wide">Agnese & Marco</h1>
+            <p class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#F5F5DC] mb-2">03 / 10 / 2025</p>
+            <p class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#F5F5DC] mb-8">Villa Calchi</p>
+
+            <div class="flex flex-col items-center space-y-4 sm:space-y-6 mt-8">
+                <!-- Nuova icona di conferma - ora punta alla sezione di conferma -->
+                <a href="#confirm-presence" class="icon-button w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full flex flex-col items-center justify-center shadow-lg hover:shadow-xl">
+                    <i class="fas fa-check-circle text-3xl sm:text-4xl md:text-5xl text-[#F5F5DC]"></i>
+                </a>
+                <!-- Contenitore per le due icone esistenti, affiancate -->
+                <div class="flex space-x-4 sm:space-x-8">
+                    <!-- Icona indicazioni -->
+                    <a href="#logistics" class="icon-button w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full flex flex-col items-center justify-center shadow-lg hover:shadow-xl">
+                        <i class="fas fa-map-marked-alt text-3xl sm:text-4xl md:text-5xl text-[#F5F5DC]"></i>
+                    </a>
+                    <!-- Icona regalo -->
+                    <a href="#gifts" class="icon-button w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full flex flex-col items-center justify-center shadow-lg hover:shadow-xl">
+                        <i class="fas fa-gift text-3xl sm:text-4xl md:text-5xl text-[#F5F5DC]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logistics Section -->
+    <section id="logistics" class="scroll-section bg-[#DAE2D7] text-[#333] px-4 py-16"> <!-- Sfondo verde chiaro, padding responsivo -->
+        <div class="max-w-xs sm:max-w-md md:max-w-3xl lg:max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-8 text-[#2F4F4F]">Informazioni Logistiche</h2>
+            <p class="text-base sm:text-lg mb-6 leading-relaxed">
+                Siamo entusiasti di condividere con voi il nostro giorno speciale a Villa Calchi.
+                Ecco alcune informazioni utili per aiutarvi a pianificare la vostra giornata.
+            </p>
+            <!-- Griglia responsiva -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-left mb-8">
+                <div class="p-4 sm:p-6 rounded-xl bg-white shadow-lg">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-[#2F4F4F]">Orari dell'Evento</h3>
+                    <p class="text-base sm:text-lg mb-2"><i class="far fa-clock text-[#4CAF50] mr-2"></i> Inizio Cerimonia: 12:00</p>
+                    <p class="text-base sm:text-lg"><i class="far fa-clock text-[#4CAF50] mr-2"></i> Fine Evento: 20:30</p>
+                </div>
+                <div class="p-4 sm:p-6 rounded-xl bg-white shadow-lg">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-[#2F4F4F]">Parcheggio</h3>
+                    <p class="text-base sm:text-lg mb-2"><i class="fas fa-parking text-[#4CAF50] mr-2"></i> Ampio parcheggio interno disponibile per tutti gli invitati.</p>
+                    <p class="text-base sm:text-lg">Seguite le indicazioni all'arrivo.</p>
+                </div>
+                <!-- Ho aggiunto text-center a questo div per centrare il pulsante "Apri in Google Maps" -->
+                <div class="md:col-span-2 p-4 sm:p-6 rounded-xl bg-white shadow-lg text-center">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-[#2F4F4F]">Come Raggiungerci</h3>
+                    <p class="text-base sm:text-lg mb-4">Villa Calchi si trova in una posizione incantevole, facilmente raggiungibile.</p>
+                    <div class="map-container mb-4">
+                        <!-- Mappa aggiornata con l'indirizzo di Villa Calchi, Calco LC -->
+                        <iframe src="https://maps.google.com/maps?q=Villa%20Calchi,%20Localit%C3%A0%20Vescogna,%2016,%2023885%20Calco%20LC&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Villa%20Calchi,%20Localit%C3%A0%20Vescogna,%2016,%2023885%20Calco%20LC" target="_blank" class="inline-block bg-[#4CAF50] text-white py-2 px-4 sm:py-3 sm:px-6 rounded-full text-base sm:text-lg font-semibold hover:bg-[#388E3C] transition-colors duration-300 shadow-md">
+                        Apri in Google Maps <i class="fas fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sezione di conferma e pulsante Typeform -->
+            <div id="confirm-presence" class="mt-12 p-4 sm:p-6 rounded-xl bg-white shadow-lg">
+                <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-[#2F4F4F]">Conferma la Tua Presenza</h3>
+                <p class="text-base sm:text-lg mb-6 leading-relaxed">
+                    Per aiutarci nell'organizzazione, ti preghiamo di confermare la tua presenza
+                    e quella dei tuoi accompagnatori entro il **RSVP - 15/09/2025**
+                    cliccando sul pulsante qui sotto. Grazie!
+                </p>
+                <!-- Pulsante per aprire Typeform in una nuova finestra -->
+                <a href="https://form.typeform.com/to/kZnveEaM" target="_blank" class="inline-block bg-[#4CAF50] text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-[#388E3C] transition-colors duration-300 shadow-md">
+                    Conferma la Tua Presenza <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gifts Section -->
+    <section id="gifts" class="scroll-section bg-[#F5F5DC] text-[#333] px-4 py-16"> <!-- Sfondo crema, padding responsivo -->
+        <div class="max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl mx-auto text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-8 text-[#2F4F4F]">Il Vostro Pensiero</h2>
+            <p class="text-base sm:text-lg mb-8 leading-relaxed">
+                La vostra presenza è il regalo più grande per noi. Se desiderate farci un pensiero,
+                un contributo per il nostro futuro insieme sarebbe molto apprezzato.
+            </p>
+            <div class="p-6 sm:p-8 rounded-xl bg-[#DAE2D7] shadow-lg mb-8"> <!-- Sfondo verde chiaro per il box -->
+                <p class="text-xl sm:text-2xl font-semibold mb-4 text-[#2F4F4F]">IBAN per il Regalo di Nozze:</p>
+                <div class="relative">
+                    <input type="text" id="iban" value="IT60X0542811101000000123456" readonly class="w-full p-3 sm:p-4 pr-10 sm:pr-12 text-center text-lg sm:text-xl font-mono border-2 border-[#4CAF50] rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#4CAF50]">
+                    <button onclick="copyToClipboard('iban')" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-[#4CAF50] text-white hover:bg-[#388E3C] transition-colors duration-300">
+                        <i class="fas fa-copy text-sm sm:text-base"></i>
+                    </button>
+                </div>
+                <p id="copy-message" class="mt-4 text-[#4CAF50] opacity-0 transition-opacity duration-300 text-sm sm:text-base">Copiato!</p>
+            </div>
+            <p class="text-base sm:text-lg text-[#2F4F4F]">
+                Grazie di cuore per il vostro affetto e supporto. Non vediamo l'ora di festeggiare con voi!
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Scrolling fluido per i link di navigazione
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                // Se l'ID del target è #confirm-presence, scorri fino alla fine dell'elemento
+                if (targetId === '#confirm-presence') {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'end' // Allinea la fine dell'elemento con la fine del viewport
+                    });
+                } else {
+                    // Per tutti gli altri link, scorri all'inizio dell'elemento (comportamento predefinito)
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer per le animazioni di scroll (effetto tipo Apple)
+        const sections = document.querySelectorAll('.scroll-section');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2 // Attiva quando il 20% della sezione è visibile
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Opzionale: smetti di osservare dopo che è diventato attivo se vuoi l'animazione solo una volta
+                    // observer.unobserve(entry.target);
+                } else {
+                    // Opzionale: rimuovi la classe 'active' quando fuori vista per riattivare allo scroll verso l'alto
+                    // entry.target.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Funzione per copiare l'IBAN negli appunti
+        function copyToClipboard(elementId) {
+            const copyText = document.getElementById(elementId);
+            const messageElement = document.getElementById('copy-message');
+
+            // Utilizza execCommand per una maggiore compatibilità negli iframe
+            const range = document.createRange();
+            range.selectNode(copyText);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            try {
+                document.execCommand('copy');
+                messageElement.classList.remove('opacity-0');
+                setTimeout(() => {
+                    messageElement.classList.add('opacity-0');
+                }, 2000); // Il messaggio scompare dopo 2 secondi
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                // Fallback per browser che non supportano execCommand o in caso di errore
+                console.log("Copia manuale: " + copyText.value); // Sostituito alert con console.log
+            }
+            window.getSelection().removeAllRanges(); // Deseleziona il testo
+        }
+
+        window.onload = function() {
+            // Qui puoi aggiungere altre logiche di inizializzazione se necessario
+        };
+
+    </script>
+    <!-- Lo script Typeform non è più necessario qui, poiché il form si apre in una nuova finestra -->
+    <!-- <script src="//embed.typeform.com/next/embed.js"></script> -->
+</body>
+</html>
