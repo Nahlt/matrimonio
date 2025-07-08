@@ -45,6 +45,13 @@
             background-image: url('https://www.fotorotastudio.it/wp-content/uploads/2018/10/villa-calchi-matrimonio-2.jpg');
         }
 
+        /* Media query per dispositivi mobili: cambia background-attachment a scroll */
+        @media (max-width: 768px) {
+            .hero-section::before {
+                background-attachment: scroll; /* L'immagine scorre con il contenuto su mobile */
+            }
+        }
+
         .overlay {
             position: absolute;
             top: 0;
@@ -118,16 +125,6 @@
             border: 0;
             border-radius: 1rem;
         }
-        /* Style for the Typeform embed container (no longer used for direct embed) */
-        /* .typeform-container {
-            width: 100%;
-            max-width: 600px;
-            height: 500px;
-            margin: 2rem auto;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        } */
     </style>
 </head>
 <body class="bg-[#F5F5DC]"> <!-- Sfondo crema -->
