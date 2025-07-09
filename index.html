@@ -176,7 +176,7 @@
                 </div>
                 <div class="p-4 sm:p-6 rounded-xl bg-white shadow-lg">
                     <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-[#2F4F4F]">Parcheggio</h3>
-                    <p class="text-base sm:text-lg mb-2"><i class="fas fa-parking text-[#4CAF50] mr-2"></i> Ampio parcheggio interno disponibile per tutti gli invitati.</p>
+                    <p class="text-base sm:text-lg mb-2"><i class="fas fa-parking text-[#4CAF50] mr-2"></i> Il parcheggio interno è ampio e disponibile per tutti gli invitati.</p>
                     <p class="text-base sm:text-lg">Seguite le indicazioni all'arrivo.</p>
                 </div>
                 <!-- Ho aggiunto text-center a questo div per centrare il pulsante "Apri in Google Maps" -->
@@ -187,7 +187,7 @@
                         <!-- Mappa aggiornata con l'indirizzo di Villa Calchi, Calco LC -->
                         <iframe src="https://maps.google.com/maps?q=Villa%20Calchi,%20Localit%C3%A0%20Vescogna,%2016,%2023885%20Calco%20LC&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                     </div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Villa%20Calchi,%20Localit%C3%A0%20Vescogna,%2016,%2023885%20Calco%20LC" target="_blank" class="inline-block bg-[#4CAF50] text-white py-2 px-4 sm:py-3 sm:px-6 rounded-full text-base sm:text-lg font-semibold hover:bg-[#388E3C] transition-colors duration-300 shadow-md">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Villa%20Calchi,%20Localit%C3%A0%20Vescogna,%2016,%2023885%20Calco%20LC" target="_blank" class="inline-block bg-[#4CAF50] text-white py-2 px-4 sm:py-3 sm:px-6 rounded-full text-base sm:text-lg font-semibold hover:bg-[#388E3C] transition-all duration-300 shadow-md hover:scale-105">
                         Apri in Google Maps <i class="fas fa-external-link-alt ml-2"></i>
                     </a>
                 </div>
@@ -197,12 +197,10 @@
             <div id="confirm-presence" class="mt-12 p-4 sm:p-6 rounded-xl bg-white shadow-lg">
                 <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-[#2F4F4F]">Conferma la Tua Presenza</h3>
                 <p class="text-base sm:text-lg mb-6 leading-relaxed">
-                    Per aiutarci nell'organizzazione, ti preghiamo di confermare la tua presenza
-                    e quella dei tuoi accompagnatori entro il **RSVP - 15/09/2025**
-                    cliccando sul pulsante qui sotto. Grazie!
+                    Per aiutarci nell'organizzazione, ti preghiamo di confermare la tua presenza e quella dei tuoi accompagnatori entro il 10/09/2025. Non servono messaggi o mail, basta cliccare sul pulsante qui sotto. Grazie!
                 </p>
                 <!-- Pulsante per aprire Typeform in una nuova finestra -->
-                <a href="https://form.typeform.com/to/kZnveEaM" target="_blank" class="inline-block bg-[#4CAF50] text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-[#388E3C] transition-colors duration-300 shadow-md">
+                <a href="https://form.typeform.com/to/kZnveEaM" target="_blank" class="inline-block bg-[#4CAF50] text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-[#388E3C] transition-all duration-300 shadow-md hover:scale-105">
                     Conferma la Tua Presenza <i class="fas fa-external-link-alt ml-2"></i>
                 </a>
             </div>
@@ -214,14 +212,17 @@
         <div class="max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl mx-auto text-center">
             <h2 class="text-4xl sm:text-5xl font-bold mb-8 text-[#2F4F4F]">Il Vostro Pensiero</h2>
             <p class="text-base sm:text-lg mb-8 leading-relaxed">
-                La vostra presenza è il regalo più grande per noi. Se desiderate farci un pensiero,
-                un contributo per il nostro futuro insieme sarebbe molto apprezzato.
+                La vostra presenza è il regalo più grande per noi, ma se desiderate anche farci un pensiero
+                con un contributo per il nostro futuro insieme 
             </p>
             <div class="p-6 sm:p-8 rounded-xl bg-[#DAE2D7] shadow-lg mb-8"> <!-- Sfondo verde chiaro per il box -->
-                <p class="text-xl sm:text-2xl font-semibold mb-4 text-[#2F4F4F]">IBAN per il Regalo di Nozze:</p>
+                <div class="flex justify-center items-center gap-3 mb-4">
+                    <p class="text-xl sm:text-2xl font-semibold text-[#2F4F4F]">IBAN per il Regalo di Nozze</p>
+                    <i class="fas fa-plane-departure text-xl sm:text-2xl text-[#2F4F4F]"></i>
+                </div>
                 <div class="relative">
                     <input type="text" id="iban" value="IT60X0542811101000000123456" readonly class="w-full p-3 sm:p-4 pr-10 sm:pr-12 text-center text-lg sm:text-xl font-mono border-2 border-[#4CAF50] rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#4CAF50]">
-                    <button onclick="copyToClipboard('iban')" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-[#4CAF50] text-white hover:bg-[#388E3C] transition-colors duration-300">
+                    <button onclick="copyToClipboard('iban')" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-[#4CAF50] text-white hover:bg-[#388E3C] transition-all duration-300 hover:scale-105">
                         <i class="fas fa-copy text-sm sm:text-base"></i>
                     </button>
                 </div>
